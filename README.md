@@ -13,6 +13,12 @@ and then to start development on something
 git flow feature start platform-name
 ```
 
+## Rulles for implementing a new platform
+* Try to have all build intermediate files to be created in the `build` folder.
+* Try to have the output be created in `build/run` folder.
+* Any extra makefiles that are needed to be created in `targets/` folder.
+* Must create a new make a new section in the main make file so that `make platform-name` can be ran.
+* Create a section in the readme file for instructions on how to setup the sdk and stuff to build for the platform.
 
 ## Building
 
