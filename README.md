@@ -28,4 +28,18 @@ make linux
 ```
 
 # DOS
-Install DosBox and DS
+Install DosBox and from [DJGPP](http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/) download:
+```
+v2/djdev205.zip 
+v2gnu/bnu2351b.zip
+v2gnu/gcc930b.zip
+v2gnu/gpp930b.zip
+v2gnu/mak43b.zip
+v2misc/csdpmi7b.zip 
+```
+and extract these into /opt/DJGPP without it creating a subdirectory for each archive file.
+
+To build for dis run the following make command:
+```
+make dos
+```
