@@ -26,3 +26,6 @@ To build for linux run the following make command
 ```
 make linux
 ```
+
+# DOS
+Install DosBox and DS
