@@ -13,6 +13,12 @@ and then to start development on something
 git flow feature start platform-name
 ```
 
+## Rulles for implementing a new platform
+* Try to have all build intermediate files to be created in the `build` folder.
+* Try to have the output be created in `build/run` folder.
+* Any extra makefiles that are needed to be created in `targets/` folder.
+* Must create a new make a new section in the main make file so that `make platform-name` can be ran.
+* Create a section in the readme file for instructions on how to setup the sdk and stuff to build for the platform.
 
 ## Building
 
@@ -25,4 +31,21 @@ make clean
 To build for linux run the following make command
 ```
 make linux
+```
+
+# DOS
+Install DosBox and from [DJGPP](http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/) download:
+```
+v2/djdev205.zip 
+v2gnu/bnu2351b.zip
+v2gnu/gcc930b.zip
+v2gnu/gpp930b.zip
+v2gnu/mak43b.zip
+v2misc/csdpmi7b.zip 
+```
+and extract these into /opt/DJGPP without it creating a subdirectory for each archive file.
+
+To build for dis run the following make command:
+```
+make dos
 ```
