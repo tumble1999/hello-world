@@ -12,3 +12,17 @@ and then to start development on something
 ```
 git flow feature start platform-name
 ```
+
+
+## Building
+
+## Cleaning
+To clean run the following make command
+```
+make clean
+```
+## Linux
+To build for linux run the following make command
+```
+make linux
+```
