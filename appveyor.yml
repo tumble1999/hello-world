@@ -7,6 +7,7 @@ environment:
 install:
   - sh: >-
       chmod +x scripts/ci.sh
+
       scripts/ci.sh
 build_script:
   - sh: >-
