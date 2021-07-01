@@ -2,8 +2,6 @@
 # Makefile for NightFox's Lib Projects (NitroFS)
 #---------------------------------------------------------------------------------
 
-
-
 #---------------------------------------------------------------------------------
 .SUFFIXES:
 #---------------------------------------------------------------------------------
@@ -27,7 +25,7 @@ ASSETS		:=	assets
 GAME_TITLE	    :=	Text 1
 GAME_SUBTITLE1	:=	Text 2
 GAME_SUBTITLE2	:=	Text 3
-GAME_ICON		:=	$(CURDIR)/../$(ASSETS)/icon.bmp
+GAME_ICON		:=	$(ASSETS)/icon.bmp
 
 _ADDFILES	:=	-d $(NITRO_FILES)
 
@@ -66,7 +64,7 @@ _ADDFILES	:=	-d $(NITRO_FILES)
 # DATA is a list of directories containing binary files embedded using bin2o
 # NITRODATA is the directory where files for NitroFS will be placed
 #---------------------------------------------------------------------------------
-TARGET		:=	$(shell basename $(CURDIR))
+TARGET		:=	hello
 SELF		:=	targets/nds.mak
 BUILD		:=	build
 OUTDIR		:=	run
@@ -74,7 +72,7 @@ OBJDIR		:=	nds
 SOURCES		:=	src
 INCLUDES	:=	include
 DATA		:=	data
-NITRODATA	:=	nitrofiles
+NITRODATA	:=	$(OBJDIR)/nitrofiles
 AUDIO		:=	$(ASSETS)/audio
 
 #---------------------------------------------------------------------------------
@@ -114,20 +112,24 @@ CD=$(notdir $(CURDIR))
 ifeq ($(CD),$(BUILD))
 #---------------------------------------------------------------------------------
 
-$(OBJDIR): $(OUTDIR)
+$(OBJDIR): $(OUTDIR) $(NITRODATA)
 	[ -d $@ ] || mkdir -p $@
 	make --no-print-directory -C $(OBJDIR) -f $(CURDIR)/../$(SELF)
 
 	
+$(NITRODATA):
+	[ -d $@ ] || mkdir -p $@
+
 $(OUTDIR):
 	[ -d $@ ] || mkdir -p $@
 
 else ifeq ($(CD),$(OBJDIR))
+GAME_ICON		:=	$(CURDIR)/../../$(GAME_ICON)
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
-$(OUTPUT).nds	: 	$(OUTPUT).elf
-$(OUTPUT).elf	:	$(OFILES)
+$(OUTPUT).nds	: 	$(OUTPUT_ELF).elf
+$(OUTPUT_ELF).elf	:	$(OFILES)
 
 #---------------------------------------------------------------------------------
 %.bin.o	:	%.bin
@@ -154,13 +156,14 @@ else
 
 
 export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(OUTDIR)/$(TARGET)
+export OUTPUT_ELF	:=	$(CURDIR)/$(BUILD)/$(OBJDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
 
-export DEPSDIR	:=	$(CURDIR)/$(BUILD)
+export DEPSDIR	:=	$(CURDIR)/$(BUILD)/$(OBJDIR)
 
-export NITRO_FILES	:=	$(CURDIR)/$(NITRODATA)
+export NITRO_FILES	:=	$(CURDIR)/$(BUILD)/$(NITRODATA)
 
 CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
