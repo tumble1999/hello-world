@@ -114,7 +114,15 @@ CD=$(notdir $(CURDIR))
 ifeq ($(CD),$(BUILD))
 #---------------------------------------------------------------------------------
 
-#ifeq ($(CD),$(OBJDIR))
+$(OBJDIR): $(OUTDIR)
+	[ -d $@ ] || mkdir -p $@
+	make --no-print-directory -C $(OBJDIR) -f $(CURDIR)/../$(SELF)
+
+	
+$(OUTDIR):
+	[ -d $@ ] || mkdir -p $@
+
+else ifeq ($(CD),$(OBJDIR))
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
@@ -145,7 +153,7 @@ else
 #---------------------------------------------------------------------------------------
 
 
-export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(TARGET)
+export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(OUTDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
