@@ -22,41 +22,38 @@ include $(DEVKITARM)/base_rules
 
 LIBNDS	:=	$(DEVKITPRO)/libnds
 
+ASSETS		:=	assets
+
 GAME_TITLE	    :=	Text 1
 GAME_SUBTITLE1	:=	Text 2
 GAME_SUBTITLE2	:=	Text 3
-GAME_ICON		:=	$(CURDIR)/../icon.bmp
+GAME_ICON		:=	$(CURDIR)/../$(ASSETS)/icon.bmp
 
 _ADDFILES	:=	-d $(NITRO_FILES)
 
 
 #---------------------------------------------------------------------------------
 %.nds: %.arm9
-	@echo "Make $@"
 	ndstool -c $@ -9 $< -b $(GAME_ICON) "$(GAME_TITLE);$(GAME_SUBTITLE1);$(GAME_SUBTITLE2)" $(_ADDFILES)
 	@echo built ... $(notdir $@)
 
 #---------------------------------------------------------------------------------
 %.nds: %.elf
-	@echo "Make $@"
 	ndstool -c $@ -9 $< -b $(GAME_ICON) "$(GAME_TITLE);$(GAME_SUBTITLE1);$(GAME_SUBTITLE2)" $(_ADDFILES)
 	@echo built ... $(notdir $@)
 
 #---------------------------------------------------------------------------------
 %.arm9: %.elf
-	@echo "Make $@"
 	$(OBJCOPY) -O binary $< $@
 	@echo built ... $(notdir $@)
 
 #---------------------------------------------------------------------------------
 %.arm7: %.elf
-	@echo "Make $@"
 	$(OBJCOPY) -O binary $< $@
 	@echo built ... $(notdir $@)
 
 #---------------------------------------------------------------------------------
 %.elf:
-	@echo "Make $@"
 	@echo linking $(notdir $@)
 	$(LD)  $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
 
@@ -76,7 +73,6 @@ OUTDIR		:=	run
 OBJDIR		:=	nds
 SOURCES		:=	src
 INCLUDES	:=	include
-ASSETS		:=	assets
 DATA		:=	data
 NITRODATA	:=	nitrofiles
 AUDIO		:=	$(ASSETS)/audio
@@ -116,30 +112,18 @@ LIBDIRS	:=	$(LIBNDS) $(CURDIR)/dep/nds
 #---------------------------------------------------------------------------------
 CD=$(notdir $(CURDIR))
 ifeq ($(CD),$(BUILD))
-.PHONY:$(OUTDIR) $(OBJDIR)
-$(OUTDIR):$(OBJDIR)
-	@echo "Make $@"
-	[ -d $@ ] || mkdir -p $@
-	make -C $(OUTDIR) -f $(CURDIR)/../$(SELF)
+#---------------------------------------------------------------------------------
 
-$(OBJDIR):
-	@echo "Make $@"
-	[ -d $@ ] || mkdir -p $@
-	make -C $(OBJDIR) -f $(CURDIR)/../$(SELF)
-
-else ifeq ($(CD),$(OBJDIR))
+#ifeq ($(CD),$(OBJDIR))
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
 $(OUTPUT).nds	: 	$(OUTPUT).elf
-	@echo "Make(main targets) $@"
 $(OUTPUT).elf	:	$(OFILES)
-	@echo "Make(main targets) $@"
 
 #---------------------------------------------------------------------------------
 %.bin.o	:	%.bin
 #---------------------------------------------------------------------------------
-	@echo "Make $@"
 	@echo $(notdir $<)
 	$(bin2o)
 #-------------------------------------------------------------
@@ -147,7 +131,6 @@ $(OUTPUT).elf	:	$(OFILES)
 #-------------------------------------------------------------
 %.bin.o:	%.bin
 #-------------------------------------------------------------
-	@echo "Make $@"
 	$(bin2o)
 
 #-------------------------------------------------------------
@@ -155,22 +138,21 @@ $(OUTPUT).elf	:	$(OFILES)
 #-------------------------------------------------------------
 soundbank.bin:	$(AUDIOFILES)
 #-------------------------------------------------------------
-	@echo "Make $@"
 	mmutil $^ -osoundbank.bin -hsoundbank.h -d
-else ifeq ($(CD),$(OUTDIR))
-ok:
-	@echo "nah"
-else
-#---------------------------------------------------------------------------------
 
-export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(OUTDIR)/$(TARGET)
+#---------------------------------------------------------------------------------
+else
+#---------------------------------------------------------------------------------------
+
+
+export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
 
-export DEPSDIR	:=	$(CURDIR)/$(BUILD)/$(OBJDIR)
+export DEPSDIR	:=	$(CURDIR)/$(BUILD)
 
-export NITRO_FILES	:=	$(CURDIR)/$(BUILD)/$(NITRODATA)
+export NITRO_FILES	:=	$(CURDIR)/$(NITRODATA)
 
 CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
@@ -216,16 +198,15 @@ endif
 
 #---------------------------------------------------------------------------------
 $(BUILD):
-	@echo "Make $@"
 	[ -d $@ ] || mkdir -p $@
-	[ -d $@/nitrofiles ] || mkdir -p $@/nitrofiles
-	make -C $(BUILD) -f $(CURDIR)/$(SELF)
+	make --no-print-directory -C $(BUILD) -f $(CURDIR)/$(SELF)
 
 #---------------------------------------------------------------------------------
 clean:
-	@echo "Make $@"
 	@echo clean ...
 	rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).arm9
 
-#---------------------------------------------------------------------------------
+
+#---------------------------------------------------------------------------------------
 endif
+#---------------------------------------------------------------------------------------
