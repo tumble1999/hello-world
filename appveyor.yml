@@ -6,7 +6,7 @@ environment:
   DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
 install:
   - sh: >-
-      scripts/cd.sh
+      scripts/ci.sh
 build_script:
   - sh: >-
       make linux
