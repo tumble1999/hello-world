@@ -1,21 +1,39 @@
 help:
 	@echo "make [target]"
 	@echo "Targets:"
-	@echo "- clean - clean the enviroment"
-	@echo "- linux - build for linux"
-	@echo "- dos - build for dos"
+	@echo "- clean - Clean the enviroment"
+	@echo "- all - Build all targets at the same time"
+	@echo "- linux - Build for linux (gcc)"
+	@echo "- dos - Build for dos (djgpp)"
+	@echo "- nds - Build for Nintendo DS (libnds)"
 
 build:
 	mkdir build
 
+all: linux dos nds
+
 linux: build
+	@echo "------------------------------"
+	@echo "Building for $@"
+	@echo "------------------------------"
 	cd build; cmake ..
 	cmake --build ./build
 .PHONY: linux
 
 dos:
-	dosbox -c "make -f targets\dos.mak"
+	@echo "------------------------------"
+	@echo "Building for $@"
+	@echo "------------------------------"
+	dosbox -c "scripts\dos.bat"
 .PHONY:dos
+
+nds: build
+	@echo "------------------------------"
+	@echo "Building for $@"
+	@echo "------------------------------"
+	make -f targets/nds.mak
+.PHONY:dos
+
 
 clean:
 	rm -rf build BUILD
