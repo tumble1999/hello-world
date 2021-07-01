@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Previous Ubuntu1604
 clone_folder: ~/hello
 environment:
-  DJGPP_DL_LOC: /tmp/djgpp
+  DJGPP_DL_LOC: /tmp/djgpp/
   DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
 install:
   - sh: >-
