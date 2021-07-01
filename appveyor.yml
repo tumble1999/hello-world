@@ -2,32 +2,32 @@ version: 1.0.{build}
 image: Previous Ubuntu1604
 clone_folder: ~/hello
 environment:
- DJGPP_DL_LOC: /tmp/djgpp
+  DJGPP_DL_LOC: /tmp/djgpp
   DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
 install:
-- sh: >-
-    sudo apt install dosbox -y
-    mkdir -p $DJGPP_DL_LOC
+  - sh: >-
+      sudo apt install dosbox -y
+      mkdir -p $DJGPP_DL_LOC
 
-    mkdir -p /opt/DJGPP
+      mkdir -p /opt/DJGPP
 
-    wget-o $DJGPP_DL_LOC/djdev205.zip $DJGPP_DL/v2/djdev205.zip 
-    wget-o $DJGPP_DL_LOC/bnu2351b.zip $DJGPP_DL/v2gnu/bnu2351b.zip
-    wget-o $DJGPP_DL_LOC/gcc930b.zip $DJGPP_DL/v2gnu/gcc930b.zip
-    wget-o $DJGPP_DL_LOC/gpp930b.zip $DJGPP_DL/v2gnu/gpp930b.zip
-    wget-o $DJGPP_DL_LOC/mak43b.zip $DJGPP_DL/v2gnu/mak43b.zip
-    wget-o $DJGPP_DL_LOC/csdpmi7b.zip $DJGPP_DL/v2misc/csdpmi7b.zip
+      wget-o $DJGPP_DL_LOC/djdev205.zip $DJGPP_DL/v2/djdev205.zip 
+      wget-o $DJGPP_DL_LOC/bnu2351b.zip $DJGPP_DL/v2gnu/bnu2351b.zip
+      wget-o $DJGPP_DL_LOC/gcc930b.zip $DJGPP_DL/v2gnu/gcc930b.zip
+      wget-o $DJGPP_DL_LOC/gpp930b.zip $DJGPP_DL/v2gnu/gpp930b.zip
+      wget-o $DJGPP_DL_LOC/mak43b.zip $DJGPP_DL/v2gnu/mak43b.zip
+      wget-o $DJGPP_DL_LOC/csdpmi7b.zip $DJGPP_DL/v2misc/csdpmi7b.zip
 
-    unzip $DJGPP_DL_LOC/*.zip -d /opt/DJGPP
+      unzip $DJGPP_DL_LOC/*.zip -d /opt/DJGPP
 build_script:
-- sh: >-
-    make linux
+  - sh: >-
+      make linux
 
-    make dos
+      make dos
 artifacts:
-- path: build/run/hello
-  name: Hello World Linux
-- path: build/run/hello.nds
-  name: Hello World Nintendo DS
-- path: build/run/HELLO.EXE
-  name: Hello World MS-DOS
+  - path: build/run/hello
+    name: Hello World Linux
+  - path: build/run/hello.nds
+    name: Hello World Nintendo DS
+  - path: build/run/HELLO.EXE
+    name: Hello World MS-DOS
