@@ -10,7 +10,7 @@ install:
 
       mkdir -p $DJGPP_DL_LOC
 
-      mkdir -p /opt/DJGPP
+      sudo mkdir -p /opt/DJGPP
 
       wget -o $DJGPP_DL_LOC/djdev205.zip $DJGPP_DL/v2/djdev205.zip
 
@@ -24,7 +24,7 @@ install:
 
       wget -o $DJGPP_DL_LOC/csdpmi7b.zip $DJGPP_DL/v2misc/csdpmi7b.zip
 
-      unzip $DJGPP_DL_LOC/*.zip -d /opt/DJGPP
+      sudo unzip $DJGPP_DL_LOC/*.zip -d /opt/DJGPP
 build_script:
   - sh: >-
       make linux
