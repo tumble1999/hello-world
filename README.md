@@ -21,19 +21,23 @@ git flow feature start platform-name
 * Create a section in the readme file for instructions on how to setup the sdk and stuff to build for the platform.
 
 ## Building
+To simutainiusly build for all platforms at the same time, run the following command.
+```
+make all
+```
 
-## Cleaning
+### Cleaning
 To clean run the following make command
 ```
 make clean
 ```
-## Linux
+### Linux
 To build for linux run the following make command
 ```
 make linux
 ```
 
-## DOS
+### DOS
 Install DosBox and from [DJGPP](http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/) download:
 ```
 v2/djdev205.zip 
@@ -49,7 +53,7 @@ To build for DOS run the following make command:
 ```
 make dos
 ```
-## Nintendo DS
+### Nintendo DS
 Either buy a flash cart or download a ds emulator and install [DevKitPro (`dkp-pacman`)](https://devkitpro.org/wiki/Getting_Started). Then run the following command;
 ```
 dkp-pacman -S nds-dev
