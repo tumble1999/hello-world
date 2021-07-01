@@ -1,7 +1,7 @@
 # hello-world
 Porting hello world to every platform
 
-## Seting up repo
+## Setting up repo
 ```
 git clone https://github.com/tumble1999/hello-world.git`
 cd hello-world
@@ -13,7 +13,7 @@ and then to start development on something
 git flow feature start platform-name
 ```
 
-## Rulles for implementing a new platform
+## Rules for implementing a new platform
 * Try to have all build intermediate files to be created in the `build` folder.
 * Try to have the output be created in `build/run` folder.
 * Any extra makefiles that are needed to be created in `targets/` folder.
@@ -33,7 +33,7 @@ To build for linux run the following make command
 make linux
 ```
 
-# DOS
+## DOS
 Install DosBox and from [DJGPP](http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/) download:
 ```
 v2/djdev205.zip 
@@ -45,7 +45,16 @@ v2misc/csdpmi7b.zip
 ```
 and extract these into /opt/DJGPP without it creating a subdirectory for each archive file.
 
-To build for dis run the following make command:
+To build for DOS run the following make command:
 ```
 make dos
+```
+## Nintendo DS
+Either buy a flash cart or download a ds emulator and install [DevKitPro (`dkp-pacman`)](https://devkitpro.org/wiki/Getting_Started). Then run the following command;
+```
+dkp-pacman -S nds-dev
+```
+To build for Nintendo DS please run the following command.
+```
+make nds
 ```
