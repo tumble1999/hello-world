@@ -8,7 +8,7 @@ help:
 	@echo "- nds - Build for Nintendo DS (libnds)"
 
 build:
-	mkdir build
+	@mkdir build
 
 all: linux dos nds
 
@@ -16,26 +16,26 @@ linux: build
 	@echo "------------------------------"
 	@echo "Building for $@"
 	@echo "------------------------------"
-	cd build; cmake ..
-	cmake --build ./build
+	@cd build; cmake ..
+	@cmake --build ./build
 .PHONY: linux
 
 dos:
 	@echo "------------------------------"
 	@echo "Building for $@"
 	@echo "------------------------------"
-	touch LOG.TXT
-	dosbox -c "scripts\dos.bat"
+	@touch LOG.TXT
+	@dosbox -c "scripts\dos.bat"
 	@echo "------------------------------"
-	cat LOG.TXT
-	rm LOG.TXT
+	@cat LOG.TXT
+	@rm LOG.TXT
 .PHONY:dos
 
 nds: build
 	@echo "------------------------------"
 	@echo "Building for $@"
 	@echo "------------------------------"
-	make -f targets/nds.mak
+	@make -f targets/nds.mak
 .PHONY:dos
 
 
