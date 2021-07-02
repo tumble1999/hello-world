@@ -59,7 +59,7 @@ HB_APP = $(OUTDIR)/apps/$(TARGET)
 prepare: $(OBJDIR) $(HB_APP)
 	mv $(OUTPUT_ELF).dol $(OUTPUT).dol
 	cp $(OUTPUT).dol $(HB_APP)/boot.dol
-	p7zip $(OUTDIR)/apps
+	cd run; 7z a $(OUTPUT) apps;
 
 
 $(HB_APP):
