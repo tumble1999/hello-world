@@ -22,6 +22,8 @@ build_script:
       make dos
 
       make nds
+
+      tree build
 artifacts:
   - path: build/run/hello
     name: Hello World Linux
