@@ -2,7 +2,7 @@
 
 #MSDOS 
 sudo apt install dosbox -y
-if [ ! -d "/opt/DJGPP"]; then 
+
 mkdir -p $DJGPP_DL_LOC
 sudo mkdir -p /opt/DJGPP
 
@@ -16,7 +16,8 @@ wget -P "${DJGPP_DL_LOC}" "${DJGPP_DL}/v2gnu/mak43b.zip"
 wget -P "${DJGPP_DL_LOC}" "${DJGPP_DL}/v2misc/csdpmi7b.zip"
 
 sudo unzip "${DJGPP_DL_LOC}*" -d /opt/DJGPP
-fi
+
+ls /opt/DJGPP
 
 # DevKitPro
 PATH=${DEVKITPRO}/tools/bin:$PATH
