@@ -1,5 +1,6 @@
 version: 1.0.{build}
-image: Previous Ubuntu1604
+image: Ubuntu2004
+
 clone_folder: ~/hello
 environment:
   DJGPP_DL_LOC: /tmp/djgpp/
