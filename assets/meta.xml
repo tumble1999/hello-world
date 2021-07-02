@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <app version="1">
+    <name>Hello World</name>
+    <coder>tumble1999</coder>
+    <version>alpha</version>
+    <release_date>202107021700</release_date>
+    <short_description>Porting hello world to every platform</short_description>
+    <long_description></long_description>
+  </app>

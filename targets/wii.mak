@@ -20,7 +20,7 @@ SELF		:=	targets/wii.mak
 TARGET		:=	hello
 BUILD		:=	build
 OUTDIR		:=	run
-OBJDIR		:=	nds
+OBJDIR		:=	wii
 SOURCES		:=	src
 ASSETS		:=	assets
 INCLUDES	:=	includes
@@ -54,13 +54,38 @@ CD=$(notdir $(CURDIR))
 ifeq ($(CD),$(BUILD))
 #---------------------------------------------------------------------------------
 
+HB_APP = $(OUTDIR)/apps/$(TARGET)
+
+prepare: $(OBJDIR) $(HB_APP)
+	mv $(OUTPUT_ELF).dol $(OUTPUT).dol
+	cp $(OUTPUT).dol $(HB_APP)/boot.dol
+	p7zip $(OUTDIR)/apps
+
+
+$(HB_APP):
+	[ -d $@ ] || mkdir -p $@
+	cp $(CURDIR)/../$(ASSETS)/meta.xml $@/
+
+
+.PHONY:prepare
+
+$(OBJDIR): $(OUTDIR)
+	[ -d $@ ] || mkdir -p $@
+	make -C $(OBJDIR) -f $(CURDIR)/../$(SELF)
+
+$(OUTDIR):
+	[ -d $@ ] || mkdir -p $@
+
+#---------------------------------------------------------------------------------
+else ifeq ($(CD),$(OBJDIR))
+#---------------------------------------------------------------------------------
 DEPENDS	:=	$(OFILES:.o=.d)
 
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
-$(OUTPUT).dol: $(OUTPUT).elf
-$(OUTPUT).elf: $(OFILES)
+$(OUTPUT_ELF).dol: $(OUTPUT_ELF).elf
+$(OUTPUT_ELF).elf: $(OFILES)
 
 $(OFILES_SOURCES) : $(HFILES)
 
@@ -77,12 +102,13 @@ $(OFILES_SOURCES) : $(HFILES)
 #---------------------------------------------------------------------------------
 else
 
-export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(TARGET)
+export OUTPUT	:=	$(CURDIR)/$(BUILD)/$(OUTDIR)/$(TARGET)
+export OUTPUT_ELF	:=	$(CURDIR)/$(BUILD)/$(OBJDIR)/$(TARGET)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(DATA),$(CURDIR)/$(dir))
 
-export DEPSDIR	:=	$(CURDIR)/$(BUILD)
+export DEPSDIR	:=	$(CURDIR)/$(BUILD)/$(OBJDIR)
 
 #---------------------------------------------------------------------------------
 # automatically build a list of object files for our project
@@ -133,7 +159,7 @@ $(BUILD):
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
-	rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
+	rm -fr $(BUILD) $(OUTPUT_ELF).elf $(OUTPUT).dol
 
 #---------------------------------------------------------------------------------
 run:
