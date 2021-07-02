@@ -31,3 +31,7 @@ artifacts:
     name: Hello World Nintendo DS
   - path: build/run/HELLO.EXE
     name: Hello World MS-DOS
+  - path: build/run/hello.dol
+    name: Hello World Wii
+  - path: build/run/hello.zip
+    name: Hello World Wii Homebrew
