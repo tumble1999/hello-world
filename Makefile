@@ -24,7 +24,11 @@ dos:
 	@echo "------------------------------"
 	@echo "Building for $@"
 	@echo "------------------------------"
+	touch LOG.TXT
 	dosbox -c "scripts\dos.bat"
+	@echo "------------------------------"
+	cat LOG.TXT
+	rm LOG.TXT
 .PHONY:dos
 
 nds: build
