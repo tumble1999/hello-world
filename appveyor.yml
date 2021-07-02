@@ -14,7 +14,8 @@ install:
       chmod +x scripts/ci.sh
 
       scripts/ci.sh
-cache: /opt/DJGPP
+cache:
+  - /opt
 build_script:
   - sh: >-
       make linux
