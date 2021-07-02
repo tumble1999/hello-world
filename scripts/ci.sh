@@ -19,9 +19,9 @@ sudo unzip "${DJGPP_DL_LOC}*" -d /opt/DJGPP
 fi
 
 # DevKitPro
-export PATH=${DEVKITPRO}/tools/bin:$PATH
+PATH=${DEVKITPRO}/tools/bin:$PATH
 wget -P "/tmp" "https://github.com/devkitPro/pacman/releases/download/v1.0.2/devkitpro-pacman.amd64.deb"
 #sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 sudo apt-get install gdebi-core
 sudo gdebi /tmp/devkitpro-pacman.amd64.deb
-sudo dkp-pacman -Sy nds-dev
+sudo dkp-pacman -S nds-dev --noconfirm
