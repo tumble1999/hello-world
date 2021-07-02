@@ -64,8 +64,9 @@ _ADDFILES	:=	-d $(NITRO_FILES)
 # DATA is a list of directories containing binary files embedded using bin2o
 # NITRODATA is the directory where files for NitroFS will be placed
 #---------------------------------------------------------------------------------
-TARGET		:=	hello
+
 SELF		:=	targets/nds.mak
+TARGET		:=	hello
 BUILD		:=	build
 OUTDIR		:=	run
 OBJDIR		:=	nds
@@ -176,13 +177,9 @@ export AUDIOFILES := $(foreach dir,$(notdir $(wildcard $(AUDIO)/*.*)),$(CURDIR)/
 # use CXX for linking C++ projects, CC for standard C
 #---------------------------------------------------------------------------------
 ifeq ($(strip $(CPPFILES)),)
-#---------------------------------------------------------------------------------
 	export LD	:=	$(CC)
-#---------------------------------------------------------------------------------
 else
-#---------------------------------------------------------------------------------
 	export LD	:=	$(CXX)
-#---------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------
 
@@ -211,12 +208,6 @@ endif
 $(BUILD):
 	[ -d $@ ] || mkdir -p $@
 	make --no-print-directory -C $(BUILD) -f $(CURDIR)/$(SELF)
-
-#---------------------------------------------------------------------------------
-clean:
-	@echo clean ...
-	rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).arm9
-
 
 #---------------------------------------------------------------------------------------
 endif

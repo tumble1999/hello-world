@@ -43,6 +43,7 @@ wii: build
 	@echo "------------------------------"
 	@echo "Building for $@"
 	@echo "------------------------------"
+	@make -f "targets/wii.mak"
 .PHONY:wii
 
 
