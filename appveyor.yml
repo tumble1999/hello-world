@@ -14,8 +14,7 @@ install:
       chmod +x scripts/ci.sh
 
       scripts/ci.sh
-cache:
-  - /opt
+cache: /opt
 build_script:
   - sh: >-
       make linux
