@@ -21,6 +21,6 @@
 # DevKitPro
 export PATH=${DEVKITPRO}/tools/bin:$PATH
 wget -P "/tmp" "https://github.com/devkitPro/pacman/releases/download/v1.0.2/devkitpro-pacman.amd64.deb"
-sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+#sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 sudo apt-get install gdebi-core
 sudo gdebi /tmp/devkitpro-pacman.amd64.deb
