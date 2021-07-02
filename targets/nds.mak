@@ -22,9 +22,9 @@ LIBNDS	:=	$(DEVKITPRO)/libnds
 
 ASSETS		:=	assets
 
-GAME_TITLE	    :=	Text 1
-GAME_SUBTITLE1	:=	Text 2
-GAME_SUBTITLE2	:=	Text 3
+GAME_TITLE	    :=	Hello World
+GAME_SUBTITLE1	:=	tumble1999
+#GAME_SUBTITLE2	:=	Text 3
 GAME_ICON		:=	$(ASSETS)/icon.bmp
 
 _ADDFILES	:=	-d $(NITRO_FILES)
