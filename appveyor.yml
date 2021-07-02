@@ -5,6 +5,10 @@ environment:
   DJGPP_DL_LOC: /tmp/djgpp/
   DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
   SDL_VIDEODRIVER: dummy
+  DEVKITPRO=/opt/devkitpro
+  DEVKITARM=${DEVKITPRO}/devkitARM
+  DEVKITPPC=${DEVKITPRO}/devkitPPC
+  PATH:${DEVKITPRO}/tools/bin:$PATH
 install:
   - sh: >-
       chmod +x scripts/ci.sh
