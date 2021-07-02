@@ -1,0 +1,31 @@
+version: 1.0.{build}
+image: Ubuntu2004
+
+clone_folder: ~/hello
+environment:
+  DJGPP_DL_LOC: /tmp/djgpp/
+  DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
+  SDL_VIDEODRIVER: dummy
+  DEVKITPRO: /opt/devkitpro
+  DEVKITARM: /opt/devkitpro/devkitARM
+  DEVKITPPC: /opt/devkitpro/devkitPPC
+install:
+  - sh: >-
+      chmod +x scripts/ci.sh
+
+      scripts/ci.sh
+cache: /opt
+build_script:
+  - sh: >-
+      make linux
+
+      make dos
+
+      make nds
+artifacts:
+  - path: build/run/hello
+    name: Hello World Linux
+  - path: build/run/hello.nds
+    name: Hello World Nintendo DS
+  - path: build/run/HELLO.EXE
+    name: Hello World MS-DOS
