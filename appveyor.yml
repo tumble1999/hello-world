@@ -1,6 +1,10 @@
 version: 1.0.{build}
 image: Ubuntu2004
 
+branches:
+  only:
+    - develop
+
 clone_folder: ~/hello
 environment:
   DJGPP_DL_LOC: /tmp/djgpp/
