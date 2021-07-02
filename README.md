@@ -74,7 +74,7 @@ make dos
 
 ### Nintendo DS
 
-Either buy a flash cart or download a ds emulator and install [DevKitPro (`dkp-pacman`)](https://devkitpro.org/wiki/Getting_Started). Then run the following command;
+Either buy a flash cart or download a DS emulator and install [DevKitPro (`dkp-pacman`)](https://devkitpro.org/wiki/Getting_Started). Then run the following command;
 
 ```
 dkp-pacman -S nds-dev
@@ -84,4 +84,18 @@ To build for Nintendo DS please run the following command.
 
 ```
 make nds
+```
+
+### Ninetndo Wii
+
+Either homebew your or download a Wii Emulator and install [DevKitPro (`dkp-pacman`)](https://devkitpro.org/wiki/Getting_Started). Then run the following command;
+
+```
+dkp-pacman -S wii-dev
+```
+
+To build for Nintendo DS please run the following command.
+
+```
+make wii
 ```

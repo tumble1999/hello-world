@@ -6,6 +6,7 @@ help:
 	@echo "- linux - Build for linux (gcc)"
 	@echo "- dos - Build for dos (djgpp)"
 	@echo "- nds - Build for Nintendo DS (libnds)"
+	@echo "- wii - Build for Nintendo WII (libogc)"
 
 build:
 	@mkdir build
@@ -36,7 +37,13 @@ nds: build
 	@echo "Building for $@"
 	@echo "------------------------------"
 	@make -f targets/nds.mak
-.PHONY:dos
+.PHONY:nds
+
+wii: build
+	@echo "------------------------------"
+	@echo "Building for $@"
+	@echo "------------------------------"
+.PHONY:wii
 
 
 clean:
