@@ -17,4 +17,4 @@ wget -P "${DJGPP_DL_LOC}" "${DJGPP_DL}/v2misc/csdpmi7b.zip"
 
 sudo unzip "${DJGPP_DL_LOC}*" -d /opt/DJGPP
 
-endif;
+fi
