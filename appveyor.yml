@@ -6,9 +6,8 @@ environment:
   DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
   SDL_VIDEODRIVER: dummy
   DEVKITPRO: /opt/devkitpro
-  DEVKITARM: ${DEVKITPRO}/devkitARM
-  DEVKITPPC: ${DEVKITPRO}/devkitPPC
-  PATH: ${DEVKITPRO}/tools/bin:$PATH
+  DEVKITARM: /opt/devkitpro/devkitARM
+  DEVKITPPC: /opt/devkitpro/devkitPPC
 install:
   - sh: >-
       chmod +x scripts/ci.sh

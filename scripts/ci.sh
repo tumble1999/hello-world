@@ -19,6 +19,7 @@
 #fi
 
 # DevKitPro
+export PATH=${DEVKITPRO}/tools/bin:$PATH
 wget -P "/tmp" "https://github.com/devkitPro/pacman/releases/download/v1.0.2/devkitpro-pacman.amd64.deb"
 sudo apt-get install gdebi-core
 sudo gdebi /tmp/devkitpro-pacman.amd64.deb
