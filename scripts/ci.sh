@@ -24,4 +24,4 @@ wget -P "/tmp" "https://github.com/devkitPro/pacman/releases/download/v1.0.2/dev
 #sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 sudo apt-get install gdebi-core
 sudo gdebi /tmp/devkitpro-pacman.amd64.deb
-sudo dkp-pacman -S nds-dev
+sudo dkp-pacman -Sy nds-dev
