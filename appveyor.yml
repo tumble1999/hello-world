@@ -19,7 +19,7 @@ build_script:
   - sh: >-
       make linux
 
-      #make dos
+      make dos
 
       make nds
 artifacts:
