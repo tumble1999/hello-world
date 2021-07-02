@@ -4,6 +4,7 @@ clone_folder: ~/hello
 environment:
   DJGPP_DL_LOC: /tmp/djgpp/
   DJGPP_DL: http://www.mirrorservice.org/sites/ftp.delorie.com/pub/djgpp/current/
+  SDL_VIDEODRIVER: dummy
 install:
   - sh: >-
       chmod +x scripts/ci.sh
