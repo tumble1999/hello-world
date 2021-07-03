@@ -39,5 +39,5 @@ artifacts:
     path: build/run/HELLO.EXE
   - name: Hello World Wii (Dolphin)
     path: build/run/Hello World (Wii).dol
-  - name: Hello World Wii (Homebrew)
+  - name: Hello World Wii (HB)
     path: build/run/Hello World (Wii).7z
