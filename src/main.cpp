@@ -56,7 +56,7 @@ void finish() {
 		VIDEO_WaitVSync();
 	}
 #else
-	std::cin();
+	std::cin.get();
 #endif
 }
 
