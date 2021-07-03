@@ -22,9 +22,9 @@ LIBNDS	:=	$(DEVKITPRO)/libnds
 
 ASSETS		:=	assets
 
-GAME_TITLE	    :=	Text 1
-GAME_SUBTITLE1	:=	Text 2
-GAME_SUBTITLE2	:=	Text 3
+GAME_TITLE	    :=	Hello World
+GAME_SUBTITLE1	:=	tumble1999
+#GAME_SUBTITLE2	:=	Text 3
 GAME_ICON		:=	$(ASSETS)/icon.bmp
 
 _ADDFILES	:=	-d $(NITRO_FILES)
@@ -64,8 +64,9 @@ _ADDFILES	:=	-d $(NITRO_FILES)
 # DATA is a list of directories containing binary files embedded using bin2o
 # NITRODATA is the directory where files for NitroFS will be placed
 #---------------------------------------------------------------------------------
-TARGET		:=	hello
+
 SELF		:=	targets/nds.mak
+TARGET		:=	hello
 BUILD		:=	build
 OUTDIR		:=	run
 OBJDIR		:=	nds
@@ -115,6 +116,7 @@ ifeq ($(CD),$(BUILD))
 $(OBJDIR): $(OUTDIR) $(NITRODATA)
 	[ -d $@ ] || mkdir -p $@
 	make --no-print-directory -C $(OBJDIR) -f $(CURDIR)/../$(SELF)
+	cd run;mv hello.nds "Hello World.nds"
 
 	
 $(NITRODATA):
@@ -176,13 +178,9 @@ export AUDIOFILES := $(foreach dir,$(notdir $(wildcard $(AUDIO)/*.*)),$(CURDIR)/
 # use CXX for linking C++ projects, CC for standard C
 #---------------------------------------------------------------------------------
 ifeq ($(strip $(CPPFILES)),)
-#---------------------------------------------------------------------------------
 	export LD	:=	$(CC)
-#---------------------------------------------------------------------------------
 else
-#---------------------------------------------------------------------------------
 	export LD	:=	$(CXX)
-#---------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------
 
@@ -211,12 +209,6 @@ endif
 $(BUILD):
 	[ -d $@ ] || mkdir -p $@
 	make --no-print-directory -C $(BUILD) -f $(CURDIR)/$(SELF)
-
-#---------------------------------------------------------------------------------
-clean:
-	@echo clean ...
-	rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).arm9
-
 
 #---------------------------------------------------------------------------------------
 endif
