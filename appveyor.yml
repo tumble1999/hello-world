@@ -27,6 +27,8 @@ build_script:
 
       make nds
 
+      make wii
+
       tree build
 artifacts:
   - name: Hello World Linux
