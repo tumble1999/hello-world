@@ -11,7 +11,7 @@ help:
 build:
 	@mkdir build
 
-all: linux dos nds
+all: linux dos nds wii
 
 linux: build
 	@echo "------------------------------"

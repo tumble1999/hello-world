@@ -30,12 +30,12 @@ build_script:
       tree build
 artifacts:
   - name: Hello World Linux
-    path: build/run/hello
+    path: build/run/Hello_World
   - name: Hello World Nintendo DS
-    path: build/run/hello.nds
+    path: build/run/Hello World.nds
   - name: Hello World MS-DOS
     path: build/run/HELLO.EXE
   - name: Hello World Wii (Dolphin)
-    path: build/run/hello.dol
+    path: build/run/Hello World (Wii).dol
   - name: Hello World Wii (Homebrew)
-    path: build/run/hello.zip
+    path: build/run/Hello World (Wii).7z

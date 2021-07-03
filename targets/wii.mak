@@ -55,11 +55,15 @@ ifeq ($(CD),$(BUILD))
 #---------------------------------------------------------------------------------
 
 HB_APP = $(OUTDIR)/apps/$(TARGET)
+TARGET_NEW = Hello World (Wii)
+OUTPUT_NEW = $(OUTDIR)/$(TARGET_NEW)
 
 prepare: $(OBJDIR) $(HB_APP)
+	@echo "$(OUTPUT_NEW)"
 	mv $(OUTPUT_ELF).dol $(OUTPUT).dol
 	cp $(OUTPUT).dol $(HB_APP)/boot.dol
-	cd run; 7z a $(OUTPUT) apps;
+	mv $(OUTPUT).dol "$(OUTPUT_NEW).dol"
+	cd run; 7z a "$(TARGET_NEW)" apps; rm -rf apps
 
 
 $(HB_APP):

@@ -116,6 +116,7 @@ ifeq ($(CD),$(BUILD))
 $(OBJDIR): $(OUTDIR) $(NITRODATA)
 	[ -d $@ ] || mkdir -p $@
 	make --no-print-directory -C $(OBJDIR) -f $(CURDIR)/../$(SELF)
+	cd run;mv hello.nds "Hello World.nds"
 
 	
 $(NITRODATA):
